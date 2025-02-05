@@ -22,7 +22,7 @@ This script automates the installation of the DeepSeek V3 Chat Model on a Debian
 
    ```bash
    #!/bin/bash
-   # (Insert the script content here)
+   # sh install_deepseek_v3.sh
 Make the script executable:
 Run the following command:
 bash
@@ -42,12 +42,10 @@ Download the model weights from Hugging Face and place them in the DeepSeek-V3 f
 Convert the model weights using the following command:
 bash
 
-Copy Code
 python convert.py --hf-ckpt-path /path/to/DeepSeek-V3 --save-path /path/to/DeepSeek-V3-Demo --n-experts 256 --model-parallel 16
 Run the model with the following command:
 bash
 
-Copy Code
 torchrun --nnodes 2 --nproc-per-node 8 --node-rank $RANK --master-addr $ADDR generate.py --ckpt-path /path/to/DeepSeek-V3-Demo --config configs/config_671B.json --interactive --temperature 0.7 --max-new-tokens 200
 License
 This code repository is licensed under the MIT License. The use of DeepSeek V3 Base/Chat models is subject to the Model License. DeepSeek V3 series (including Base and Chat) supports commercial use.
